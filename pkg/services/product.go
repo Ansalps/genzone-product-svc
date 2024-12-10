@@ -70,7 +70,7 @@ func (s *Server) GetProduct(ctx context.Context, req *pb.GetProductRequest) (*pb
 	productID := req.GetProductId()
 	log.Printf("Received request for product ID: %s", productID)
 	var product models.Product
-	if err := s.H.DB.Where("id = ?", product.ID).First(&product).Error; err != nil {
+	if err := s.H.DB.Where("id = ?", productID).First(&product).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return &pb.GetProductResponse{
 				Status: http.StatusBadRequest,
