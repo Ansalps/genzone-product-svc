@@ -1,0 +1,55 @@
+syntax="proto3";
+package product;
+option go_package="./pkg/pb";
+service ProductService{
+    rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse){}
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse){}
+    rpc GetProduct (GetProductRequest) returns (GetProductResponse);
+}
+
+//CreateCategory
+
+message CreateCategoryRequest{
+    string categoryname=1;
+    string description=2;
+    string imageurl=3;
+}
+message CreateCategoryResponse{
+    int64 status=1;
+    string error=2;
+    int64 id=3;
+}
+//CreateProduct
+
+message CreateProductRequest{
+    string categoryname=1;
+    string productname=2;
+    string description=3;
+    string imageurl=4;
+    double price=5;
+    int64 stock=6;
+    bool popular=7;
+    string size=8;
+}
+message CreateProductResponse{
+    int64 status=1;
+    string error=2;
+    int64 id=3;
+}
+
+message GetProductRequest {
+  string product_id = 1;
+}
+
+message GetProductResponse {
+  string productid = 1;
+  string categoryname=2;
+  string productname = 3;
+  string description=4;
+  string imageurl=5;
+  double price = 6;
+  int64 stock = 7;
+  bool popular = 8;
+  int64 status=9;
+  string error=10;
+}
